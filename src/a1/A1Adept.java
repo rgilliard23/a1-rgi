@@ -31,22 +31,38 @@ public class A1Adept {
 			customers[i].setNumItems(value);
 
 
-			for (int j = 0; j < customers[i].numItems; j++){
-				System.out.println("How many items of this type are there");
-				Item item = new Item();
-				int num = scan.nextInt();
-				System.out.println("What is the item name");
-				item.itemName = scan.next();
-				System.out.println("What is the item price");
-				double itemPrice = scan.nextDouble();
-
-				customers[j].total = itemPrice * num;
-			}
-		}
-		for(int k = 0; k<customers.length; k++) {
-			System.out.println(customers[k].firstName.charAt(0) + ". " + customers[k].lastName + ": " + customers[k].total);
+            for (int c = 0; c < value; c++) {
+                Item item = new Item();
+                System.out.println("What is the item name");
+                item.itemName = scan.next();
+                System.out.println("How many items of this type are there");
+                int num = scan.nextInt();
+                System.out.println("What is the item price");
+                double itemPrice = scan.nextDouble();
+                customers[i].items.add(item);
+                customers[i].total += itemPrice * num;
+            }
 		}
 
+
+		int num = 0;
+		int num2 = 0;
+		for(int k = 0; k <customers.length; k++) {
+
+		    double smallest = customers[0].total;
+		    if(customers[k].total > num){
+		        num = k;
+            }
+		    else if (customers[k].total < smallest){
+		        num2 = k;
+            }
+
+		}
+
+
+        System.out.println("Biggest: " + customers[num].getName() + " " + customers[num].total);
+        System.out.println("Smallest: " + customers[num2].getName() + " " + customers[num2].total);
+        System.out.println("Average: " + "(" + (customers[num].total + customers[num2].total) / 2 + ")");
 
 	}
 }

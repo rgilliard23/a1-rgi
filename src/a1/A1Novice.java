@@ -17,11 +17,20 @@ public class A1Novice {
 		String temp;
 		Customer[] customers;
 		Customer customer;
+
+		/**
+		 * This code asks the user for their First and Last Name, how many items that person has its details.
+		 * It then finds the customer with the highest total and the customer with the lowest total then prints the
+		 * average of their totals.
+		 *
+		 */
+
+
 		System.out.println("How many customers are there?");
 		numCustomers = scan.nextInt();
 		customers = new Customer[numCustomers];
 
-		for (int i =0; i < customers.length; i++){
+		for (int i =0; i < customers.length; i++) {
 			System.out.println("What is the customers first name?");
 			temp = scan.next();
 			customers[i] = new Customer();
@@ -33,19 +42,21 @@ public class A1Novice {
 			value = scan.nextInt();
 			customers[i].setNumItems(value);
 
+			for (int c = 0; c < value; c++) {
 
-			for (int j = 0; j < customers[i].numItems; j++){
-				System.out.println("How many items of this type are there");
 				Item item = new Item();
-				int num = scan.nextInt();
 				System.out.println("What is the item name");
 				item.itemName = scan.next();
+				System.out.println("How many items of this type are there");
+				int num = scan.nextInt();
 				System.out.println("What is the item price");
 				double itemPrice = scan.nextDouble();
-
-				customers[j].total = itemPrice * num;
+				customers[i].items.add(item);
+				customers[i].total += itemPrice * num;
 			}
+
 		}
+
 		for(int k = 0; k<customers.length; k++) {
 			System.out.println(customers[k].firstName.charAt(0) + ". " + customers[k].lastName + ": " + customers[k].total);
 		}
@@ -60,8 +71,13 @@ class Customer{
 	double total;
 
 	Item item;
+
 	List<Item> items = new ArrayList<Item>(numItems);
 
+
+	public String getName() {
+		return firstName + " " + lastName;
+	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -81,6 +97,10 @@ class Customer{
 
 	public void setNumItems(int numItems) {
 		this.numItems = numItems;
+	}
+
+	public int getNumItems() {
+		return numItems;
 	}
 
 	void addItem(Item item){

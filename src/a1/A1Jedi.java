@@ -8,6 +8,7 @@ public class A1Jedi {
 
     public static void main(String[] args) {
 
+
         Scanner scan = new Scanner(System.in);
 
         // Your code follows here.
@@ -41,51 +42,79 @@ public class A1Jedi {
                 item.itemName = scan.next();
                 System.out.println("How many items of this type are there");
                 int num = scan.nextInt();
+                item.num = num;
                 System.out.println("What is the item price");
                 double itemPrice = scan.nextDouble();
+                item.itemPrice = itemPrice;
                 customers[i].items.add(item);
+                item.itemTotal = itemPrice * num;
                 customers[i].total += itemPrice * num;
             }
         }
 
-        String[][] itemNameCount = new String[0][0];
 
-        int num = 0;
 
-        for (int k = 0; k < customers.length; k++) {
+        int num;
+        int num2;
+
+        List<String> itemNames = new ArrayList<>();
+
             List<Item> items = new ArrayList<Item>();
-
-
+            //getting all the items from each customer and adding to list
             for (int d = 0; d < customers.length; d++) {
-                items.add(customers[d].item);
+                for (int e =0; e < customers[d].items.size(); e++ )
+                items.add(customers[d].items.get(e));
             }
 
-            Item[] items2 = (Item[]) items.toArray();
 
 
-            for (int e = 0; e < items.size(); e++) {
-                String itemName = items2[e].itemName;
+            Item[] items2 = items.toArray(new Item[items.size()]);
 
 
-                num = 0;
-                for (int f = 0; f < items2.length; f++) {
 
-
-                    if (itemName == items2[f].itemName) {
-                        num++;
-                    }
-
-                }
-                itemNameCount = new String[items2.length][2];
-                itemNameCount[e][0] = itemName;
-                itemNameCount[e][1] = Integer.toString(num);
+        for (int y = 0; y < items2.length; y++){
+            String itemName = items2[y].itemName;
+            if (!itemNames.contains(itemName)) {
+                itemNames.add(itemName);
             }
 
         }
 
-        for (int g = 0; g < itemNameCount.length; g++)
-            System.out.println(itemNameCount[g][0] + "");
+        String[][] itemNameCount = new String[itemNames.size()][3];
 
+            //adding each unique item
+            for (int e = 0; e < itemNames.size(); e++) {
+                num = 0;
+                //checking how many of the same products were ordered
+                for (int f = 0; f < items2.length; f++) {
+                    String itemName = items2[f].itemName;
+                    if (itemName == items2[f].itemName) {
+                        num += items2[f].num;
+                    }
+                }
+                itemNameCount[e][0] = itemNames.get(e);
+                itemNameCount[e][1] = Integer.toString(num);
+            }
+                //checking how many customers have ordered the same products
+                for (int g = 0; g < itemNames.size(); g++) {
+                    num2 = 0;
+                    for (int h = 0; h < items2.length; h++) {
+                        if(itemNames.contains(items2[h].itemName)){
+                            num2++;
+                            itemNameCount[g][2] = Integer.toString(num2);
+                        }
+                        //if (itemNames.get(g) == items2[h].itemName) {
+                       // }
+                    }
+                }
 
+        for (int z = 0; z < itemNames.size(); z++){
+            if (itemNameCount[z][1] == "0"){
+                System.out.println("No customers bought " + itemNameCount[z][0]);
+            }
+            else {
+                System.out.println(itemNameCount[z][2] + " customers bought " + itemNameCount[z][1] + " " + itemNameCount[z][0]);
+            }
+        }
     }
 }

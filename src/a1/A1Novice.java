@@ -26,6 +26,8 @@ public class A1Novice {
 		 */
 
 
+
+
 		System.out.println("How many customers are there?");
 		numCustomers = scan.nextInt();
 		customers = new Customer[numCustomers];

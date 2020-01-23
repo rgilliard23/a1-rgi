@@ -19,25 +19,25 @@ public class A1Adept {
 		customers = new Customer[numCustomers];
 
 		for (int i =0; i < customers.length; i++){
-			System.out.println("What is the customers first name?");
+			//System.out.println("What is the customers first name?");
 			temp = scan.next();
 			customers[i] = new Customer();
 			customers[i].setFirstName(temp);
-			System.out.println("What is the customers last name?");
+			//System.out.println("What is the customers last name?");
 			temp = scan.next();
 			customers[i].setLastName(temp);
-			System.out.println("How many items does the customer have?");
+			//System.out.println("How many items does the customer have?");
 			value = scan.nextInt();
 			customers[i].setNumItems(value);
 
 
             for (int c = 0; c < value; c++) {
                 Item item = new Item();
-                System.out.println("What is the item name");
+                //System.out.println("What is the item name");
                 item.itemName = scan.next();
-                System.out.println("How many items of this type are there");
+               // System.out.println("How many items of this type are there");
                 int num = scan.nextInt();
-                System.out.println("What is the item price");
+               // System.out.println("What is the item price");
                 double itemPrice = scan.nextDouble();
                 customers[i].items.add(item);
                 customers[i].total += itemPrice * num;

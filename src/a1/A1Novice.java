@@ -46,10 +46,10 @@ public class A1Novice {
 			for (int c = 0; c < value; c++) {
 
 				Item item = new Item();
-				//System.out.println("What is the item name");
-				item.itemName = scan.next();
 				//System.out.println("How many items of this type are there");
 				int num = scan.nextInt();
+				//System.out.println("What is the item name");
+				item.itemName = scan.next();
 				//System.out.println("What is the item price");
 				double itemPrice = scan.nextDouble();
 				customers[i].items.add(item);

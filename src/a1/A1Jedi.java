@@ -19,7 +19,7 @@ public class A1Jedi {
         String temp;
         Customer[] customers;
         Customer customer;
-        //System.out.println("How many customers are there?");
+        ///System.out.println("How many customers are there?");
         numCustomers = scan.nextInt();
         customers = new Customer[numCustomers];
 
